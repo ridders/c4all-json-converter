@@ -22,4 +22,5 @@ If an error occurs when specifying the path to the original json file, in the fi
 To Do
 ========
 1. Include the option to convert json files which contain "hashes only"
-2. Read in graded / categorised .C4P5 SQL files to generate a new .XML file for the purposes of importation into NetClean / Griffeye DI 
+2. Read in partially graded / categorised .C4P5 SQL files to generate a new .XML file for the purposes of importation into NetClean / Griffeye DI. Must include "Not Dones". 
+3. Add functionality to produce EnCase bookmarks file from NetClean CSV and possibly C4ALL XML. (Implementation is pending until Griffeye confirm a query) 
