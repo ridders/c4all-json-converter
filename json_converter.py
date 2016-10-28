@@ -43,6 +43,11 @@ organisation_info = """\n      ],"CaseID":"%s","CaseNumber":"%s","ContactOrganiz
   ]
 }"""
 
+def walk(mydict, key='value'):
+    for row in mydict:
+        for mediarow in row['Media']:
+            yield [mediarow[key] for key in keylist if key in mediarow]
+
 # Creates an empty json file and names it using the date_time variable
 with open('Export%s.json' % date_time, 'wb') as f:
 
@@ -51,17 +56,21 @@ with open('Export%s.json' % date_time, 'wb') as f:
 
 # Body of the new json file. Reads in required elements from original json and stores them in a list for printing
     keylist = ["MediaID", "MD5", "SHA1", "Name", "Category", "MediaSize", "RelativeFilePath"]
-    def walk(mydict, key='value'):
-        for row in mydict:
-            for mediarow in row['Media']:
-                yield [mediarow[key] for key in keylist if key in mediarow]
+
     file_info = []
     for item in walk(data.get('value')):
         dirpath = ('Files' + date_time)
         fname = item[6].split('.')
         
         file_info.append ("""{
-          "odata.id":"Media(\\"%s\\")","MediaID":%s,"MD5":"%s","SHA1":"%s","Name":"%s","Category":%s,"MediaSize":"%s","RelativeFilePath":"%s\\\%s.%s"
+          "odata.id":"Media(\\"%s\\")",
+          "MediaID":%s,
+          "MD5":"%s",
+          "SHA1":"%s",
+          "Name":"%s",
+          "Category":%s,
+          "MediaSize":"%s",
+          "RelativeFilePath":"%s\\\%s.%s"
         }""" % (item[1], item[0], item[1], item[2], item[3].encode('ascii', 'ignore'), item[4], item[5], dirpath.encode('ascii', 'ignore'), item[1], fname[1]))
         
 # Writes the json body to the new file
