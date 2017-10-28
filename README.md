@@ -1,4 +1,6 @@
 ![Supported Python versions](https://img.shields.io/badge/python-2.7-blue.svg)
+[![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+
 
 # c4all-json-converter
 Generates a new C4ALL 1.1 json file which is compatible with the Hubstream Intelligence Agent &amp; CAID platform
